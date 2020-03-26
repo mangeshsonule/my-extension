@@ -3,7 +3,7 @@
 Plugin Name: My Extension
 Plugin URI:  http://localhost/dev/
 Description: Extension of the divi Plugin
-Version:     1.0.0
+Version:     1.0.1
 Author:      Mangesh Sonule
 Author URI:  
 License:     GPL2
