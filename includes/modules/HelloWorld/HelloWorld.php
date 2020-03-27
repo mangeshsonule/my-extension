@@ -85,12 +85,26 @@ class UAD_HelloWorld extends ET_Builder_Module {
 
 	public function render( $attrs, $content = null, $render_slug ) {
 
-		$title_text_color = et_pb_responsive_options()->get_property_values( $this->props, 'title_text_color' );
-		et_pb_responsive_options()->generate_responsive_css( $title_text_color, '%%order_class%% .uad_hello_world .uad-heading',
-		'color', $render_slug,' !important;', 'color' );
+		$icon_color_uad = $this->props['icon_color_uad'];
+		$title_text_color = $this->props['title_text_color'];
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .uad-wrap .uad-heading',
+			'declaration' => sprintf(
+				'color: %1$s;',
+				esc_attr( $title_text_color )
+			),
+		) );
+
+		ET_Builder_Element::set_style( $render_slug, array(
+			'selector'    => '%%order_class%% .uad-wrap .uad-icon',
+			'declaration' => sprintf(
+				'color: %1$s;',
+				esc_attr( $icon_color_uad )
+			),
+		) );
 
 		$multi_view                      = et_pb_multi_view_options( $this );
-
+			
 		$icon = $multi_view->render_element( array(
 			'tag'     => 'span',
 			'content' => '{{icon}}',
@@ -113,6 +127,7 @@ class UAD_HelloWorld extends ET_Builder_Module {
 
 			return $processed_value;
 		}
+
 		return $raw_value;
 	}
 }
